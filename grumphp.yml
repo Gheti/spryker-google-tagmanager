@@ -1,4 +1,4 @@
-parameters:
-    git_dir: .
-    bin_dir: vendor/bin
+grumphp:
     tasks: null
+    hooks_dir: ~
+    hooks_preset: local
