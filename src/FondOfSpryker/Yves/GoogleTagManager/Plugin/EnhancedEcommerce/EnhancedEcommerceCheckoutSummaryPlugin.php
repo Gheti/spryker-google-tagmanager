@@ -7,7 +7,7 @@ use Generated\Shared\Transfer\EnhancedEcommerceTransfer;
 use Generated\Shared\Transfer\PaymentTransfer;
 use Spryker\Yves\Kernel\AbstractPlugin;
 use Symfony\Component\HttpFoundation\Request;
-use Twig_Environment;
+use Twig\Environment;
 
 /**
  * @method \FondOfSpryker\Yves\GoogleTagManager\GoogleTagManagerFactory getFactory()
@@ -15,7 +15,7 @@ use Twig_Environment;
 class EnhancedEcommerceCheckoutSummaryPlugin extends AbstractPlugin implements EnhancedEcommercePageTypePluginInterface
 {
     /**
-     * @param \Twig_Environment $twig
+     * @param \Twig\Environment $twig
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param array|null $params
      *
@@ -23,7 +23,7 @@ class EnhancedEcommerceCheckoutSummaryPlugin extends AbstractPlugin implements E
      *
      * @return string
      */
-    public function handle(Twig_Environment $twig, Request $request, ?array $params = []): string
+    public function handle(Environment $twig, Request $request, ?array $params = []): string
     {
         return $twig->render($this->getTemplate(), [
             'data' => [

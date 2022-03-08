@@ -9,7 +9,7 @@ use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\ProductViewTransfer;
 use Spryker\Yves\Kernel\AbstractPlugin;
 use Symfony\Component\HttpFoundation\Request;
-use Twig_Environment;
+use Twig\Environment;
 
 /**
  * @method \FondOfSpryker\Yves\GoogleTagManager\GoogleTagManagerFactory getFactory()
@@ -26,7 +26,7 @@ class EnhencedEcommercePurchasePlugin extends AbstractPlugin implements Enhanced
     }
 
     /**
-     * @param \Twig_Environment $twig
+     * @param \Twig\Environment $twig
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param array|null $params
      *
@@ -34,7 +34,7 @@ class EnhencedEcommercePurchasePlugin extends AbstractPlugin implements Enhanced
      *
      * @return string
      */
-    public function handle(Twig_Environment $twig, Request $request, ?array $params = []): string
+    public function handle(Environment $twig, Request $request, ?array $params = []): string
     {
         /** @var \Generated\Shared\Transfer\OrderTransfer $orderTransfer */
         $orderTransfer = $params['order'];

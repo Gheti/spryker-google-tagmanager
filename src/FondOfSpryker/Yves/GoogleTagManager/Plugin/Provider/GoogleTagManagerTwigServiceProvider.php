@@ -5,11 +5,13 @@
  *
  * @author      Jozsef Geng <gengjozsef86@gmail.com>
  */
+
 namespace FondOfSpryker\Yves\GoogleTagManager\Plugin\Provider;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Spryker\Yves\Kernel\AbstractPlugin;
+use Twig\Environment;
 use Twig_Environment;
 
 /**
@@ -28,16 +30,15 @@ class GoogleTagManagerTwigServiceProvider extends AbstractPlugin implements Serv
             ->getFactory()
             ->createGoogleTagManagerTwigExtension();
 
-        $app['twig'] = $app->share(
+        $app['twig'] =
             $app->extend(
                 'twig',
-                function (Twig_Environment $twig) use ($googleTagManagerTwigExtension, $app) {
+                function (Environment $twig) use ($googleTagManagerTwigExtension, $app) {
                     $twig->addExtension($googleTagManagerTwigExtension);
 
                     return $twig;
                 }
-            )
-        );
+            );
     }
 
     /**
