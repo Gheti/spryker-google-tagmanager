@@ -35,27 +35,19 @@ class TransactionProductsVariableBuilder implements TransactionProductsVariableB
     protected $storageClient;
 
     /**
-     * @var \FondOfSpryker\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToProductImageStorageClientInterface
-     */
-    protected $productImageStorageClient;
-
-    /**
      * @param \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface $moneyPlugin
      * @param \FondOfSpryker\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToProductStorageClientInterface $storageClient
-     * @param \FondOfSpryker\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToProductImageStorageClientInterface $productImageStorageClient
      * @param \FondOfSpryker\Yves\GoogleTagManager\Plugin\VariableBuilder\TransactionProductVariables\TransactionProductVariableBuilderPluginInterface[] $plugins
      * @param string $locale
      */
     public function __construct(
         MoneyPluginInterface $moneyPlugin,
         GoogleTagManagerToProductStorageClientInterface $storageClient,
-        GoogleTagManagerToProductImageStorageClientInterface $productImageStorageClient,
         array $plugins,
         string $locale
     ) {
         $this->moneyPlugin = $moneyPlugin;
         $this->storageClient = $storageClient;
-        $this->productImageStorageClient = $productImageStorageClient;
         $this->plugins = $plugins;
         $this->locale = $locale;
     }
@@ -189,18 +181,18 @@ class TransactionProductsVariableBuilder implements TransactionProductsVariableB
      */
     protected function addImagesToItemTransfer(ItemTransfer $itemTransfer): ItemTransfer
     {
-        if ($itemTransfer->getImages()->count() === 0) {
-            $productAbstractImageStorageTransfer = $this->productImageStorageClient->getProductAbstractImageStorageReader()
-                ->findProductImageAbstractStorageTransfer($itemTransfer->getIdProductAbstract(), $this->locale);
-
-            foreach ($productAbstractImageStorageTransfer->getImageSets() as $imageSetStorageTransfer) {
-                foreach ($imageSetStorageTransfer->getImages() as $productImageStorageTransfer) {
-                    $productImageTransfer = (new ProductImageTransfer)->fromArray($productImageStorageTransfer->toArray());
-
-                    $itemTransfer->addImage($productImageTransfer);
-                }
-            }
-        }
+//        if ($itemTransfer->getImages()->count() === 0) {
+//            $productAbstractImageStorageTransfer = $this->productImageStorageClient->getProductAbstractImageStorageReader()
+//                ->findProductImageAbstractStorageTransfer($itemTransfer->getIdProductAbstract(), $this->locale);
+//
+//            foreach ($productAbstractImageStorageTransfer->getImageSets() as $imageSetStorageTransfer) {
+//                foreach ($imageSetStorageTransfer->getImages() as $productImageStorageTransfer) {
+//                    $productImageTransfer = (new ProductImageTransfer)->fromArray($productImageStorageTransfer->toArray());
+//
+//                    $itemTransfer->addImage($productImageTransfer);
+//                }
+//            }
+//        }
 
         return $itemTransfer;
     }

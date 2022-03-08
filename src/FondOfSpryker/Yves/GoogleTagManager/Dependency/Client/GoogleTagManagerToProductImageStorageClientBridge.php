@@ -2,7 +2,7 @@
 
 namespace FondOfSpryker\Yves\GoogleTagManager\Dependency\Client;
 
-use FondOfSpryker\Client\ProductImageStorage\ProductImageStorageClientInterface;
+use Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface;
 use Spryker\Client\ProductImageStorage\Storage\ProductAbstractImageStorageReaderInterface;
 
 class GoogleTagManagerToProductImageStorageClientBridge implements GoogleTagManagerToProductImageStorageClientInterface
@@ -15,7 +15,7 @@ class GoogleTagManagerToProductImageStorageClientBridge implements GoogleTagMana
     /**
      * CartPageToProductImageStorageBridge constructor.
      *
-     * @param \FondOfSpryker\Client\ProductImageStorage\ProductImageStorageClientInterface $productImageStorageClient
+     * @param \Spryker\Client\ProductImageStorage\ProductImageStorageClientInterface $productImageStorageClient
      */
     public function __construct(ProductImageStorageClientInterface $productImageStorageClient)
     {

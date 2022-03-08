@@ -121,7 +121,6 @@ class GoogleTagManagerFactory extends AbstractFactory
         return new TransactionProductsVariableBuilder(
             $this->createMoneyPlugin(),
             $this->getProductStorageClient(),
-            $this->getProductImageStorageClient(),
             $this->getTransactionProductVariableBuilderPlugins(),
             $this->getStore()->getCurrentLocale()
         );
