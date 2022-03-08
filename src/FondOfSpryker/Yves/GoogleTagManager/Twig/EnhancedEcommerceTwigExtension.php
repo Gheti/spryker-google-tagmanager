@@ -4,6 +4,7 @@ namespace FondOfSpryker\Yves\GoogleTagManager\Twig;
 
 use Spryker\Shared\Twig\TwigExtension;
 use Symfony\Component\HttpFoundation\Request;
+use Twig\TwigFunction;
 use Twig_Environment;
 use Twig_SimpleFunction;
 
@@ -32,11 +33,11 @@ class EnhancedEcommerceTwigExtension extends TwigExtension
     }
 
     /**
-     * @return \Twig_SimpleFunction
+     * @return \TwigFunction
      */
-    protected function createEnhancedEcommerceFunction(): Twig_SimpleFunction
+    protected function createEnhancedEcommerceFunction(): TwigFunction
     {
-            return new Twig_SimpleFunction(
+            return new TwigFunction(
                 static::FUNCTION_ENHANCED_ECOMMERCE,
                 [$this, 'renderEnhancedEcommerce'],
                 [

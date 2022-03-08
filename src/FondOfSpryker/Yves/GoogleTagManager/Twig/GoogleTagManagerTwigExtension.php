@@ -16,6 +16,7 @@ use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Spryker\Shared\Config\Config;
 use Spryker\Shared\Tax\TaxConstants;
 use Spryker\Shared\Twig\TwigExtension;
+use Twig\TwigFunction;
 use Twig_Environment;
 use Twig_SimpleFunction;
 
@@ -97,11 +98,11 @@ class GoogleTagManagerTwigExtension extends TwigExtension
     }
 
     /**
-     * @return \Twig_SimpleFunction
+     * @return TwigFunction
      */
     protected function createGoogleTagManagerFunction()
     {
-        return new Twig_SimpleFunction(
+        return new TwigFunction(
             static::FUNCTION_GOOGLE_TAG_MANAGER,
             [$this, 'renderGoogleTagManager'],
             [
