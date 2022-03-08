@@ -4,9 +4,8 @@ namespace FondOfSpryker\Yves\GoogleTagManager\Twig;
 
 use Spryker\Shared\Twig\TwigExtension;
 use Symfony\Component\HttpFoundation\Request;
+use Twig\Environment;
 use Twig\TwigFunction;
-use Twig_Environment;
-use Twig_SimpleFunction;
 
 class EnhancedEcommerceTwigExtension extends TwigExtension
 {
@@ -33,7 +32,7 @@ class EnhancedEcommerceTwigExtension extends TwigExtension
     }
 
     /**
-     * @return \TwigFunction
+     * @return \Twig\TwigFunction
      */
     protected function createEnhancedEcommerceFunction(): TwigFunction
     {
@@ -48,7 +47,7 @@ class EnhancedEcommerceTwigExtension extends TwigExtension
     }
 
     /**
-     * @param \Twig_Environment $twig
+     * @param \Twig\Environment $twig
      * @param string $page
      * @param \Symfony\Component\HttpFoundation\Request|null $request
      * @param array $params
@@ -57,7 +56,7 @@ class EnhancedEcommerceTwigExtension extends TwigExtension
      *
      * @return string
      */
-    public function renderEnhancedEcommerce(Twig_Environment $twig, string $page, ?Request $request, array $params = []): string
+    public function renderEnhancedEcommerce(Environment $twig, string $page, ?Request $request, array $params = []): string
     {
         if (array_key_exists($page, $this->plugin)) {
             return $this->plugin[$page]->handle($twig, $request, $params);

@@ -4,18 +4,18 @@
 namespace FondOfSpryker\Yves\GoogleTagManager\Plugin\EnhancedEcommerce;
 
 use Symfony\Component\HttpFoundation\Request;
-use Twig_Environment;
+use Twig\Environment;
 
 interface EnhancedEcommercePageTypePluginInterface
 {
     /**
-     * @param \Twig_Environment $twig
+     * @param \Twig\Environment $twig
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param array|null $params
      *
      * @return string
      */
-    public function handle(Twig_Environment $twig, Request $request, ?array $params = []): string;
+    public function handle(Environment $twig, Request $request, ?array $params = []): string;
 
     /**
      * @return string
