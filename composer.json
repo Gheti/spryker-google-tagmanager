@@ -27,7 +27,7 @@
     "spryker/kernel": "^3.0.0",
     "spryker/money": "^2.0.0",
     "spryker/product": "^6.0.0",
-    "spryker/product-storage": "^1.35.0",
+    "spryker/product-storage": "~1.32.1",
     "spryker/session": "~3.2.0|^4.11.0"
   },
   "require-dev": {
