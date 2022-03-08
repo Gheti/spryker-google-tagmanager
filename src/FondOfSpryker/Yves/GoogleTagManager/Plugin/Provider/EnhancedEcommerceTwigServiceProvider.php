@@ -5,6 +5,7 @@ namespace FondOfSpryker\Yves\GoogleTagManager\Plugin\Provider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Spryker\Yves\Kernel\AbstractPlugin;
+use Twig\Environment;
 
 /**
  * @method \FondOfSpryker\Yves\GoogleTagManager\GoogleTagManagerFactory getFactory()
@@ -22,12 +23,12 @@ class EnhancedEcommerceTwigServiceProvider extends AbstractPlugin implements Ser
         $twigExtension = $this->getFactory()
             ->createEnhancedEcommerceTwigExtension();
 
-        $app['twig'] = $app->share(
-            $app->extend('twig', function (\Twig_Environment $twig) use ($twigExtension) {
+        $app['twig'] =
+            $app->extend('twig', function (Environment $twig) use ($twigExtension) {
                 $twig->addExtension($twigExtension);
 
                 return $twig;
-            })
+            }
         );
     }
 
