@@ -8,44 +8,20 @@
 
 namespace FondOfSpryker\Yves\GoogleTagManager\Plugin\Provider;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Spryker\Service\Container\ContainerInterface;
+use Spryker\Shared\TwigExtension\Dependency\Plugin\TwigPluginInterface;
 use Spryker\Yves\Kernel\AbstractPlugin;
 use Twig\Environment;
 
 /**
  * @method \FondOfSpryker\Yves\GoogleTagManager\GoogleTagManagerFactory getFactory()
  */
-class GoogleTagManagerTwigServiceProvider extends AbstractPlugin implements ServiceProviderInterface
+class GoogleTagManagerTwigServiceProvider extends AbstractPlugin implements TwigPluginInterface
 {
-    /**
-     * @param \Silex\Application $app
-     *
-     * @return void
-     */
-    public function register(Application $app)
+    public function extend(Environment $twig, ContainerInterface $container): Environment
     {
-        $googleTagManagerTwigExtension = $this
-            ->getFactory()
-            ->createGoogleTagManagerTwigExtension();
+        $twig->addExtension( $this->getFactory()->createGoogleTagManagerTwigExtension());
 
-        $app['twig'] =
-            $app->extend(
-                'twig',
-                function (Environment $twig) use ($googleTagManagerTwigExtension, $app) {
-                    $twig->addExtension($googleTagManagerTwigExtension);
-
-                    return $twig;
-                }
-            );
-    }
-
-    /**
-     * @param \Silex\Application $app
-     *
-     * @return void
-     */
-    public function boot(Application $app)
-    {
+        return $twig;
     }
 }
