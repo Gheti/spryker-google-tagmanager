@@ -28,7 +28,7 @@
     "spryker/money": "^2.0.0",
     "spryker/product": "^6.0.0",
     "spryker/product-storage": "~1.32.1",
-    "spryker/session": "~3.2.0|^4.11.0"
+    "spryker/session": "~3.2.0|^4.10.0"
   },
   "require-dev": {
     "codeception/codeception": "^2.4|^4.1.30",
