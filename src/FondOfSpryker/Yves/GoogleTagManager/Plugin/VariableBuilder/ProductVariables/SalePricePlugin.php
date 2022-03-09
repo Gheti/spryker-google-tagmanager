@@ -43,6 +43,7 @@ class SalePricePlugin extends AbstractPlugin implements ProductVariableBuilderPl
      */
     public function handle(ProductAbstractTransfer $product): array
     {
+        return [];
         $specialPrice = $this->getProductSpecialPrice($product);
 
         if ($specialPrice === null) {
@@ -56,6 +57,7 @@ class SalePricePlugin extends AbstractPlugin implements ProductVariableBuilderPl
      * @param \Generated\Shared\Transfer\ProductAbstractTransfer $product
      *
      * @return float|null
+     * @deprecated
      */
     protected function getProductSpecialPrice(ProductAbstractTransfer $product): ?float
     {

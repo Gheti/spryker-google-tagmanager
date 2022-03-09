@@ -140,7 +140,7 @@ class GoogleTagManagerFactory extends AbstractFactory
     public function getVariableBuilders(): array
     {
         return [
-//            GoogleTagManagerConstants::PAGE_TYPE_PRODUCT => $this->createProductVariableBuilder(),
+            GoogleTagManagerConstants::PAGE_TYPE_PRODUCT => $this->createProductVariableBuilder(),
             GoogleTagManagerConstants::PAGE_TYPE_CATEGORY => $this->createCategoryVariableBuilder(),
             GoogleTagManagerConstants::PAGE_TYPE_DEFAULT => $this->createDefaultVariableBuilder(),
             GoogleTagManagerConstants::PAGE_TYPE_ORDER => $this->createOrderVariableBuilder(),

@@ -27,17 +27,9 @@ class ProductVariableBuilder
 
     /**
      * @param \Spryker\Shared\Money\Dependency\Plugin\MoneyPluginInterface $moneyPlugin
-     * @param \FondOfSpryker\Client\TaxProductConnector\TaxProductConnectorClient $taxProductConnectorClient
-     * @param \FondOfSpryker\Yves\GoogleTagManager\Plugin\VariableBuilder\ProductVariables\ProductVariableBuilderPluginInterface[] $productVariableBuilderPlugins
      */
-    public function __construct(
-        MoneyPluginInterface $moneyPlugin,
-        TaxProductConnectorClient $taxProductConnectorClient,
-        array $productVariableBuilderPlugins = []
-    ) {
+    public function __construct(MoneyPluginInterface $moneyPlugin) {
         $this->moneyPlugin = $moneyPlugin;
-        $this->taxProductConnectorClient = $taxProductConnectorClient;
-        $this->productVariableBuilderPlugins = $productVariableBuilderPlugins;
     }
 
     /**
@@ -47,21 +39,12 @@ class ProductVariableBuilder
      */
     public function getVariables(ProductAbstractTransfer $product): array
     {
-        $price = $this->moneyPlugin->convertIntegerToDecimal($product->getPrice());
-        $priceExcludingTax = $this->moneyPlugin->convertIntegerToDecimal(
-            $this->taxProductConnectorClient->getNetPriceForProduct($product)->getNetPrice()
-        );
-
         $gooleTagManagerProductDetailTransfer = (new GooleTagManagerProductDetailTransfer())
             ->setProductId($product->getIdProductAbstract())
             ->setProductName($this->getProductName($product))
-            ->setProductSku($product->getSku())
-            ->setProductPrice($price)
-            ->setProductPriceExcludingTax($priceExcludingTax)
-            ->setProductTax($this->getProductTax($product))
-            ->setProductTaxRate($product->getTaxRate());
+            ->setProductSku($product->getSku());
 
-        return $this->executePlugins($product, $gooleTagManagerProductDetailTransfer->toArray(true, true));
+        return $gooleTagManagerProductDetailTransfer->toArray(true, true);
     }
 
     /**
@@ -98,20 +81,5 @@ class ProductVariableBuilder
         }
 
         return $product->getAttributes()[GoogleTagManagerConstants::NAME_UNTRANSLATED];
-    }
-
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $product
-     * @param array $variables
-     *
-     * @return array
-     */
-    protected function executePlugins(ProductAbstractTransfer $product, array $variables): array
-    {
-        foreach ($this->productVariableBuilderPlugins as $plugin) {
-            $variables = array_merge($variables, $plugin->handle($product));
-        }
-
-        return $variables;
     }
 }
