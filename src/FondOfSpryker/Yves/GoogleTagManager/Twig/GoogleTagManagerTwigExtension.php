@@ -165,7 +165,6 @@ class GoogleTagManagerTwigExtension extends TwigExtension
         switch ($page) {
             case GoogleTagManagerConstants::PAGE_TYPE_PRODUCT:
                 $productAbstractTransfer = (new ProductAbstractTransfer())
-                    ->setTaxRate(Config::get(TaxConstants::DEFAULT_TAX_RATE))
                     ->fromArray($params['product']->toArray(), true);
 
                 $this->addProductVariables($productAbstractTransfer);
