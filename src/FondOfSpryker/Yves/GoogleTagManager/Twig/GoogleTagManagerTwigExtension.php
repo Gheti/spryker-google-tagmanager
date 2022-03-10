@@ -288,7 +288,7 @@ class GoogleTagManagerTwigExtension extends TwigExtension
      */
     protected function getClientIpAddress(): ?string
     {
-        $ipAddress = $_SERVER['REMOTE_ADDR'];
+        $ipAddress = $_SERVER['REMOTE_ADDR'] ?? '::1';
 
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR']) {
             $ipAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
