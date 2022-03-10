@@ -13,8 +13,6 @@ use FondOfSpryker\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToCart
 use FondOfSpryker\Yves\GoogleTagManager\Dependency\Client\GoogleTagManagerToSessionClientInterface;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
-use Spryker\Shared\Config\Config;
-use Spryker\Shared\Tax\TaxConstants;
 use Spryker\Shared\Twig\TwigExtension;
 use Twig\Environment;
 use Twig\TwigFunction;
@@ -25,7 +23,7 @@ class GoogleTagManagerTwigExtension extends TwigExtension
     const FUNCTION_DATA_LAYER = 'dataLayer';
 
     /**
-     * @var \Silex\Application
+     * @var mixed $app
      */
     protected $app;
 
