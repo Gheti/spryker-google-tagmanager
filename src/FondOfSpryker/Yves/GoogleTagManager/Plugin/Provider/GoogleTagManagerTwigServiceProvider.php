@@ -18,6 +18,12 @@ use Twig\Environment;
  */
 class GoogleTagManagerTwigServiceProvider extends AbstractPlugin implements TwigPluginInterface
 {
+    /**
+     * @param \Spryker\Service\Container\ContainerInterface $twig
+     * @param ContainerInterface $container
+     *
+     * @return \Twig\Environment
+     */
     public function extend(Environment $twig, ContainerInterface $container): Environment
     {
         $twig->addExtension( $this->getFactory()->createGoogleTagManagerTwigExtension());

@@ -2,47 +2,26 @@
 
 namespace FondOfSpryker\Yves\GoogleTagManager\Plugin\Provider;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Spryker\Service\Container\ContainerInterface;
+use Spryker\Shared\TwigExtension\Dependency\Plugin\TwigPluginInterface;
 use Spryker\Yves\Kernel\AbstractPlugin;
 use Twig\Environment;
 
 /**
  * @method \FondOfSpryker\Yves\GoogleTagManager\GoogleTagManagerFactory getFactory()
  */
-class EnhancedEcommerceTwigServiceProvider extends AbstractPlugin implements ServiceProviderInterface
+class EnhancedEcommerceTwigServiceProvider extends AbstractPlugin implements TwigPluginInterface
 {
     /**
-     * Registers services on the given app.
+     * @param \Spryker\Service\Container\ContainerInterface $twig
+     * @param ContainerInterface $container
      *
-     * This method should only be used to configure services and parameters.
-     * It should not get services.
+     * @return \Twig\Environment
      */
-    public function register(Application $app)
+    public function extend(Environment $twig, ContainerInterface $container): Environment
     {
-        $twigExtension = $this->getFactory()
-            ->createEnhancedEcommerceTwigExtension();
+        $twig->addExtension( $this->getFactory()->createEnhancedEcommerceTwigExtension());
 
-        $app['twig'] =
-            $app->extend('twig', function (Environment $twig) use ($twigExtension) {
-                $twig->addExtension($twigExtension);
-
-                return $twig;
-            }
-        );
-    }
-
-    /**
-     * Bootstraps the application.
-     *
-     * This method is called after all services are registered
-     * and should be used for "dynamic" configuration (whenever
-     * a service must be requested).
-     *
-     * @return void
-     */
-    public function boot(Application $app)
-    {
-        // TODO: Implement boot() method.
+        return $twig;
     }
 }
