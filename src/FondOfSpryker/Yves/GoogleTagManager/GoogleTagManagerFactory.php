@@ -57,11 +57,7 @@ class GoogleTagManagerFactory extends AbstractFactory
      */
     protected function createProductVariableBuilder(): ProductVariableBuilder
     {
-        return new ProductVariableBuilder(
-            $this->createMoneyPlugin(),
-            $this->getTaxProductConnectorClient(),
-            $this->getProductVariableBuilderPlugins()
-        );
+        return new ProductVariableBuilder($this->createMoneyPlugin());
     }
 
     /**
